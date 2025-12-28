@@ -1,2 +1,4 @@
 __pycache__/
-reset_api_training/instance/
+rest_api_training/instance
+*env*
+*.db
