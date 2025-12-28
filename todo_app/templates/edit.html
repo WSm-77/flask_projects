@@ -1,0 +1,40 @@
+<!-- templates/edit.html -->
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Edit Task</h1>
+
+    <form method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ task['title'] }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3">{{ task['description'] }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="due_date" class="form-label">Due Date</label>
+            <input type="date" class="form-control" id="due_date" name="due_date" value="{{ task['due_date'] }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="priority" class="form-label">Priority</label>
+            <select class="form-select" id="priority" name="priority">
+                <option value="low" {% if task['priority'] == 'low' %}selected{% endif %}>Low</option>
+                <option value="medium" {% if task['priority'] == 'medium' %}selected{% endif %}>Medium</option>
+                <option value="high" {% if task['priority'] == 'high' %}selected{% endif %}>High</option>
+            </select>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="completed" name="completed" {% if task['completed'] %}checked{% endif %}>
+            <label class="form-check-label" for="completed">Completed</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Task</button>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}
